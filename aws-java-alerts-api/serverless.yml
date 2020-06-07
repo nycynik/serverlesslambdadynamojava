@@ -106,8 +106,25 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
-#  Resources:
+# https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html
+resources:
+  Resources:
+    alertsTable:
+      Type: AWS::DynamoDB::Table
+      Proerties:
+        TableName: alerts_table
+        AttributeDefinitions:
+          - AttributeName: id
+          AttributeType: S
+          - AttributeName: alert_short_description
+          AttributeType: S
+          - AttributeName: alert_long_description
+          AttributeType: S
+          - AttributeName: create_timestamp
+          AttributeType: S
+          - AttributeName: alert_status
+          AttrbuteType: S
+
 #    NewResource:
 #      Type: AWS::S3::Bucket
 #      Properties:
