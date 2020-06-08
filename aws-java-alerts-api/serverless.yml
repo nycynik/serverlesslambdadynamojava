@@ -46,20 +46,33 @@ package:
 
 functions:
 
-  listCurrentAlerts:
-    handler: com.serverless.ListCurrentAlerts
-
   listAlerts:
     handler: com.serverless.ListAlerts
+    events:
+      - http:
+          path: /alerts
+          method: get
 
   getAlert:
     handler: com.serverless.GetAlert
+    events:
+      - http:
+          path: /alerts/(id)
+          method: get
 
   createAlert:
     handler: com.serverless.CreateAlert
+    events:
+      - http:
+          path: /alerts
+          method: post
 
   deleteAlert:
     handler: com.serverless.DeleteAlert
+      events:
+        - http:
+        path: /alerts/(id)
+        method: delete
 
   clearAlert:
     handler: com.serverless.ClearAlert
@@ -115,6 +128,8 @@ resources:
         TableName: alerts_table
         AttributeDefinitions:
           - AttributeName: id
+          AttributeType: S
+          - AttributeName: recipient_id
           AttributeType: S
           - AttributeName: alert_short_description
           AttributeType: S
